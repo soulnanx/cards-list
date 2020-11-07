@@ -55,6 +55,8 @@ dependencies {
     implementation appDependencies.material
     implementation appDependencies.koin
     implementation appDependencies.koinCore
+    implementation appDependencies.lifecycleExtensions
+
     implementation mainDependencies.retrofit
     implementation mainDependencies.retrofitRx
     implementation appDependencies.koinViewModel

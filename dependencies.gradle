@@ -6,7 +6,7 @@ ext {
 
     //Android
     androidBuildToolsVersion = "29.0.3"
-    androidMinSdkVersion = 21
+    androidMinSdkVersion = 22
     androidTargetSdkVersion = 29
     androidCompileSdkVersion = 29
     kotlinVersion = '1.3.41'
@@ -18,6 +18,7 @@ ext {
     constraintLayoutVersion = '1.1.3'
     androidxArchVersion = "2.1.0"
     recyclerViewVersion = "1.1.0"
+    lifecycleExtensions = '2.2.0'
     materialVersion = "1.1.0"
     koinVersion = "2.0.1"
 
@@ -85,6 +86,7 @@ ext {
             lifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel:$lifeCycleVersion",
             activityKtx       : "androidx.activity:activity-ktx:$activityKtxVersion",
             recyclerView      : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+            lifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions",
             material          : "com.google.android.material:material:$materialVersion",
             koin              : "org.koin:koin-android:$koinVersion",
             koinCore          : "org.koin:koin-core:$koinVersion",
