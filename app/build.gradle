@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    def mainDependencies = rootProject.ext.mainDependencies
+    def mainTestDependencies = rootProject.ext.mainTestDependencies
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
+
+    implementation project(rootProject.ext.modules.data)
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation mainDependencies.kotlinStdLib
+    implementation mainDependencies.androidxCore
+    implementation mainDependencies.appCompat
+
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.material
+    implementation appDependencies.koin
+    implementation appDependencies.koinCore
+    implementation mainDependencies.retrofit
+    implementation mainDependencies.retrofitRx
+    implementation appDependencies.koinViewModel
+    implementation appDependencies.lifecycleViewModel
+    implementation appDependencies.activityKtx
+
+    testImplementation mainTestDependencies.junit
+    testImplementation mainTestDependencies.ioMockk
+    testImplementation mainTestDependencies.mockito
+    testImplementation mainTestDependencies.mockitoKotlin
+    testImplementation mainTestDependencies.coreTesting
+    testImplementation appTestDependencies.coreTestingAndroidX
+
+}
