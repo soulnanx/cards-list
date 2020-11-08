@@ -1,4 +1,4 @@
-package com.hivecode.heartstonecards
+package com.hivecode.hearthstonecards
 
 import org.junit.Test
 

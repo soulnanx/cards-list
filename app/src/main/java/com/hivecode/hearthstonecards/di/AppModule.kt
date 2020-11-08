@@ -1,6 +1,6 @@
-package com.hivecode.heartstonecards.di
+package com.hivecode.hearthstonecards.di
 
-import com.hivecode.heartstonecards.ui.cardType.viewModel.CardTypeViewModel
+import com.hivecode.hearthstonecards.ui.cardType.viewModel.CardTypeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

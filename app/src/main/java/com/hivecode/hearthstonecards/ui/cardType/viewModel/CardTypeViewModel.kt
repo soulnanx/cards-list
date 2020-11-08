@@ -1,4 +1,4 @@
-package com.hivecode.heartstonecards.ui.cardType.viewModel
+package com.hivecode.hearthstonecards.ui.cardType.viewModel
 
 import androidx.lifecycle.ViewModel
 

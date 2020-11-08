@@ -7,7 +7,7 @@ import com.hivecode.data.service.response.CardResponse
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class HeartStoneService() {
+class HearthStoneService() {
 
     private val api = ApiConnection().create(BuildConfig.REST_ENDPOINT, HearthStoneRest::class.java)
 

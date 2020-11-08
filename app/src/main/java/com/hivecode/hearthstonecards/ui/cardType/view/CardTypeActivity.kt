@@ -1,8 +1,8 @@
-package com.hivecode.heartstonecards.ui.cardType.view
+package com.hivecode.hearthstonecards.ui.cardType.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hivecode.heartstonecards.R
+import com.hivecode.hearthstonecards.R
 
 class CardTypeActivity : AppCompatActivity() {
 

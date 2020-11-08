@@ -1,8 +1,8 @@
-package com.hivecode.heartstonecards
+package com.hivecode.hearthstonecards
 
 import android.app.Application
-import com.hivecode.heartstonecards.di.repositoryModule
-import com.hivecode.heartstonecards.di.viewModelModule
+import com.hivecode.hearthstonecards.di.repositoryModule
+import com.hivecode.hearthstonecards.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
