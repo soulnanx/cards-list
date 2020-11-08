@@ -1,15 +1,15 @@
 package com.hivecode.data.service
 
 import com.hivecode.data.BuildConfig
-import com.hivecode.data.retrofit.rest.HearthStoneRest
+import com.hivecode.data.retrofit.rest.CardRest
 import com.hivecode.data.service.config.ApiConnection
 import com.hivecode.data.service.response.CardResponse
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class HearthStoneService() {
+class CardService() {
 
-    private val api = ApiConnection().create(BuildConfig.REST_ENDPOINT, HearthStoneRest::class.java)
+    private val api = ApiConnection().create(BuildConfig.REST_ENDPOINT, CardRest::class.java)
 
     internal fun fetchCardsByClass(playerClass: String): Observable<List<CardResponse>> {
         return api
