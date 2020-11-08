@@ -27,6 +27,7 @@ ext {
 
     //Libs
     retrofitVersion = "2.9.0"
+    retrofit_curl_interceptor = '0.1'
     rxAndroidVersion = "2.1.1"
     rxJavaVersion = "2.2.19"
     lifeCycleVersion = "2.2.0"
@@ -63,6 +64,8 @@ ext {
             retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+            koin              : "org.koin:koin-android:$koinVersion",
+            koinCore          : "org.koin:koin-core:$koinVersion",
             retrofitRx        : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     ]
 
@@ -78,7 +81,15 @@ ext {
 
     dataDependencies = [
             retrofitRx  : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
-            retrofitGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+            retrofitGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            cURL        : "com.github.grapesnberries:curlloggerinterceptor:$retrofit_curl_interceptor"
+    ]
+
+    dataTestDependencies = [
+            junit        : "junit:junit:$junitVersion",
+            ioMockk      : "io.mockk:mockk:$mockkVersion",
+            mockito      : "org.mockito:mockito-core:$mockitoVersion",
+            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
     ]
 
     appDependencies = [
@@ -88,8 +99,6 @@ ext {
             recyclerView      : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
             lifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions",
             material          : "com.google.android.material:material:$materialVersion",
-            koin              : "org.koin:koin-android:$koinVersion",
-            koinCore          : "org.koin:koin-core:$koinVersion",
             koinViewModel     : "org.koin:koin-androidx-viewmodel:$koinVersion"
     ]
 

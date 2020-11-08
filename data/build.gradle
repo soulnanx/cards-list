@@ -19,17 +19,36 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", 'REST_ENDPOINT', '"https://omgvamp-hearthstone-v1.p.rapidapi.com/"'
+            buildConfigField "String", 'REST_HEADER_API_HOST', '"omgvamp-hearthstone-v1.p.rapidapi.com"'
+            buildConfigField "String", 'REST_HEADER_API_KEY', '"d557b88312msh910f23ecea87dd5p1a2b9djsne49905757dc2"'
         }
+
+        debug {
+            buildConfigField "String", 'REST_ENDPOINT', '"https://omgvamp-hearthstone-v1.p.rapidapi.com/"'
+            buildConfigField "String", 'REST_HEADER_API_HOST', '"omgvamp-hearthstone-v1.p.rapidapi.com"'
+            buildConfigField "String", 'REST_HEADER_API_KEY', '"d557b88312msh910f23ecea87dd5p1a2b9djsne49905757dc2"'
+        }
+
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    def dataDependencies = rootProject.ext.dataDependencies
+    def mainDependencies = rootProject.ext.mainDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    implementation dataDependencies.retrofitRx
+    implementation dataDependencies.retrofitGson
+    implementation mainDependencies.retrofit
+    implementation mainDependencies.koin
+    implementation mainDependencies.koinCore
+    implementation dataDependencies.cURL
+
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.ioMockk
+    testImplementation dataTestDependencies.mockito
+    testImplementation dataTestDependencies.mockitoKotlin
 
 }

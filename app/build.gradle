@@ -50,15 +50,14 @@ dependencies {
     implementation mainDependencies.kotlinStdLib
     implementation mainDependencies.androidxCore
     implementation mainDependencies.appCompat
+    implementation mainDependencies.koin
+    implementation mainDependencies.koinCore
+    implementation mainDependencies.retrofit
+    implementation mainDependencies.retrofitRx
 
     implementation appDependencies.constraintLayout
     implementation appDependencies.material
-    implementation appDependencies.koin
-    implementation appDependencies.koinCore
     implementation appDependencies.lifecycleExtensions
-
-    implementation mainDependencies.retrofit
-    implementation mainDependencies.retrofitRx
     implementation appDependencies.koinViewModel
     implementation appDependencies.lifecycleViewModel
     implementation appDependencies.activityKtx
