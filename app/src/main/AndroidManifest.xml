@@ -19,6 +19,7 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".ui.cardList.view.CardListActivity"></activity>
         
     </application>
 

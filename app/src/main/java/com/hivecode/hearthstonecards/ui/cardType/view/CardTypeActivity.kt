@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.hivecode.data.model.CardTypeInfo
 import com.hivecode.hearthstonecards.R
 import com.hivecode.hearthstonecards.databinding.CardTypeActivityBinding
+import com.hivecode.hearthstonecards.ui.cardList.view.CardListActivity
 import com.hivecode.hearthstonecards.ui.cardType.viewModel.CardTypeViewModel
 import org.koin.android.ext.android.inject
 
@@ -71,8 +72,13 @@ class CardTypeActivity : AppCompatActivity() {
         .show()
     }
 
-    private fun onClickCardType(cardTypeInfo: CardTypeInfo, text: String){
-//        viewModel.fetchCardsByType(text)
+    private fun onClickCardType(cardTypeInfo: CardTypeInfo, selectedType: String){
+        val intent = CardListActivity.createIntent(
+            this@CardTypeActivity,
+            cardTypeInfo,
+            selectedType
+        )
+        startActivity(intent)
     }
 
 }

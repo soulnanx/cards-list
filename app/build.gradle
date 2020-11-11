@@ -55,6 +55,7 @@ dependencies {
     implementation mainDependencies.retrofit
     implementation mainDependencies.retrofitRx
 
+    implementation appDependencies.picasso
     implementation appDependencies.constraintLayout
     implementation appDependencies.material
     implementation appDependencies.lifecycleExtensions

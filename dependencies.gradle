@@ -99,13 +99,14 @@ ext {
             recyclerView      : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
             lifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions",
             material          : "com.google.android.material:material:$materialVersion",
-            koinViewModel     : "org.koin:koin-androidx-viewmodel:$koinVersion"
+            koinViewModel     : "org.koin:koin-androidx-viewmodel:$koinVersion",
+            picasso           : "com.squareup.picasso:picasso:$picassoVersion",
     ]
 
     appTestDependencies = [
             coreTestingAndroidX: "androidx.arch.core:core-testing:$androidxArchVersion",
             testRunner        : "androidx.test:runner:$testRunnerVersion",
-            coreKtx           : "androidx.test:core-ktx:$coreKtxTestVersion"
+            coreKtx           : "androidx.test:core-ktx:$coreKtxTestVersion",
     ]
 
 }

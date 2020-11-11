@@ -10,7 +10,6 @@ import io.reactivex.disposables.Disposable
 class CardTypeRepository(
     private val cardTypeService: CardTypeService
 ) {
-
     private val _cardTypeResult = MutableLiveData<List<CardTypeInfo>>()
     val cardTypeInfoResult: LiveData<List<CardTypeInfo>>
         get() = _cardTypeResult
