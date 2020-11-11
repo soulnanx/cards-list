@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Hearthstone Cards</string>
+    <string name="app_name">Hearthstone</string>
+    <string name="loading_text">Aguarde...</string>
 </resources>

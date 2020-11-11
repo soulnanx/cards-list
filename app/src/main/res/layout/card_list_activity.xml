@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <variable
+            name="selectedType"
+            type="String" />
+
+        <variable
+            name="activity"
+            type="com.hivecode.hearthstonecards.ui.cardList.view.CardListActivity" />
+
         <variable
             name="viewModel"
             type="com.hivecode.hearthstonecards.ui.cardList.viewModel.CardListViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background_color">
 
-    <androidx.appcompat.widget.Toolbar
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
-        android:layout_width="0dp"
         android:layout_height="@dimen/toolbar_height"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/backIV"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/ic_back_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_4x"
+            android:src="@drawable/ic_back_btn"
+            android:onClick="@{() -> activity.finish()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/toolbarTitleTV"
-                style="@style/toolbarTitle"
-                android:text="@string/app_name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/toolbarTitleTV"
+            style="@style/labelToolbarCardList"
+            android:text="@{selectedType}"
+            app:layout_constraintBottom_toBottomOf="@id/backIV"
+            app:layout_constraintTop_toTopOf="@id/backIV"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardRV"

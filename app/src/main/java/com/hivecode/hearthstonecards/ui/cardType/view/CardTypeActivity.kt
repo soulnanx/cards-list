@@ -2,17 +2,17 @@ package com.hivecode.hearthstonecards.ui.cardType.view
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.hivecode.data.model.CardTypeInfo
 import com.hivecode.hearthstonecards.R
+import com.hivecode.hearthstonecards.base.BaseActivity
 import com.hivecode.hearthstonecards.databinding.CardTypeActivityBinding
 import com.hivecode.hearthstonecards.ui.cardList.view.CardListActivity
 import com.hivecode.hearthstonecards.ui.cardType.viewModel.CardTypeViewModel
 import org.koin.android.ext.android.inject
 
-class CardTypeActivity : AppCompatActivity() {
+class CardTypeActivity : BaseActivity() {
 
     private val viewModel: CardTypeViewModel by inject()
     private val adapter = CardTypeAdapter(::onClickCardType)
@@ -57,7 +57,8 @@ class CardTypeActivity : AppCompatActivity() {
     }
 
     private fun shouldShowLoading(shouldShow: Boolean){
-        // showLoading
+        if (shouldShow) showLoading()
+        else hideLoading()
     }
 
     private fun addItemsOnRecyclerView(cardTypeInfoList: List<CardTypeInfo>){
