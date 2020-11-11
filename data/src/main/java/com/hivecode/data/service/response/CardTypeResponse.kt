@@ -3,7 +3,7 @@ package com.hivecode.data.service.response
 
 import com.google.gson.annotations.SerializedName
 
-data class InfoResponse(
+data class CardTypeResponse(
     @SerializedName("classes")
     val classes: List<String>?,
     @SerializedName("races")

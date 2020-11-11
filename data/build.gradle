@@ -43,6 +43,7 @@ dependencies {
     implementation dataDependencies.retrofitRx
     implementation dataDependencies.retrofitGson
     implementation mainDependencies.retrofit
+    implementation mainDependencies.rxAndroid
     implementation mainDependencies.koin
     implementation mainDependencies.koinCore
     implementation dataDependencies.cURL

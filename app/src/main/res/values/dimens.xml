@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="card_type_card_view_height">104dp</dimen>
+    <dimen name="card_type_card_view_width">144dp</dimen>
+    <dimen name="margin_2x">8dp</dimen>
+    <dimen name="margin_3x">16dp</dimen>
+    <dimen name="margin_4x">24dp</dimen>
+    <dimen name="margin_5x">32dp</dimen>
+    <dimen name="margin_7x">64dp</dimen>
+
+    <dimen name="text_size_2x">16sp</dimen>
+    <dimen name="text_size_5x">24sp</dimen>
+    <dimen name="margin_left_title">40dp</dimen>
+
+    <dimen name="toolbar_height">154dp</dimen>
+    <dimen name="toolbar_title">40sp</dimen>
+    <dimen name="card_type_corner">16dp</dimen>
+    <dimen name="card_type_elevation">4dp</dimen>
+</resources>
