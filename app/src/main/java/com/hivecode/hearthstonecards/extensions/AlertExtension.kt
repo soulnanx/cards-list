@@ -30,6 +30,5 @@ class CustomLoadingDialog(
         .setCancelable(false)
         .create()
 
-    fun show() = buildDialog().apply { show() }
     fun build() = buildDialog()
 }
