@@ -3,19 +3,15 @@ package com.hivecode.hearthstonecards.ui.cardList.viewModel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.hivecode.common.tests.TestObserver
-import com.hivecode.data.model.Card
 import com.hivecode.data.model.ClassCardType
 import com.hivecode.data.repository.CardRepository
 import io.mockk.MockKAnnotations
-import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
-import io.reactivex.Single
-import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 
 class CardListViewModelTest {
 
@@ -43,7 +39,7 @@ class CardListViewModelTest {
             value = Throwable("erro interno")
         }
 
-//        viewModel.fetchCardByCardTypeInfo(cardType, selectedType)
+        viewModel.fetchCardByCardTypeInfo(cardType, selectedType)
         assertEquals(viewModel.errorResult.value?.message, Throwable("erro interno").message)
     }
 
