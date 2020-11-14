@@ -2,7 +2,7 @@ package com.hivecode.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.hivecode.data.mapper.CardTypeMapper
+import com.hivecode.data.mapper.CardTypeInfoMapper
 import com.hivecode.data.model.CardTypeInfo
 import com.hivecode.data.service.CardTypeService
 import io.reactivex.disposables.Disposable
@@ -27,7 +27,7 @@ class CardTypeRepository(
             .fetchCardType()
             .doOnSubscribe { _loading.value = true }
             .map {
-                infoResponse -> CardTypeMapper().from(infoResponse)
+                infoResponse -> CardTypeInfoMapper().from(infoResponse)
              }
             .doOnTerminate { _loading.value = false }
             .subscribe(
