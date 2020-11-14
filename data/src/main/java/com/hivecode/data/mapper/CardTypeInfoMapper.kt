@@ -7,7 +7,7 @@ import com.hivecode.data.model.RaceCardType
 import com.hivecode.data.model.TypeCardType
 import com.hivecode.data.service.response.CardTypeResponse
 
-class CardTypeMapper: DataMapper<CardTypeResponse, List<CardTypeInfo>> {
+class CardTypeInfoMapper: DataMapper<CardTypeResponse, List<CardTypeInfo>> {
     override fun from(it: CardTypeResponse) =
         convertCardTypeToList(it)
 
