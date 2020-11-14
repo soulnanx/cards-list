@@ -29,4 +29,11 @@ dependencies {
     implementation mainDependencies.retrofit
     implementation mainDependencies.koin
     implementation mainDependencies.koinCore
+    implementation mainDependencies.lifecycleExtensions
+
+    testImplementation mainTestDependencies.junit
+    testImplementation mainTestDependencies.ioMockk
+    testImplementation mainTestDependencies.mockito
+    testImplementation mainTestDependencies.mockitoKotlin
+    testImplementation mainTestDependencies.coreTesting
 }

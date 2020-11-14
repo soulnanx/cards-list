@@ -37,13 +37,15 @@ ext {
     //Tests
     junitVersion = '4.13'
     androidXJunitVersion = '1.1.1'
+    testRunnerVersion = "1.1.1"
+
     espressoCoreVersion = '3.2.0'
     mockkVersion = "1.10.0"
     mockitoVersion = "2.27.0"
     mockitoKotlinVersion = "2.1.0"
     coreTestingVersion = "2.1.0"
-    testRunnerVersion = "1.1.1"
     coreKtxTestVersion = "1.2.0"
+    fastlaneVersion = "2.0.0"
 
     modules = [
             data        : ":data",
@@ -62,6 +64,7 @@ ext {
             androidxCore      : "androidx.core:core-ktx:$androidxCoreVersion",
             appCompat         : "androidx.appcompat:appcompat:$androidxAppCompatVersion",
             retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            lifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
             rxJava            : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             koin              : "org.koin:koin-android:$koinVersion",
@@ -72,7 +75,7 @@ ext {
     mainTestDependencies = [
             junit        : "junit:junit:$junitVersion",
             androidXJunit: "androidx.test.ext:junit:$androidXJunitVersion",
-            espressoCore : "androidx.test.espresso:espresso-core:$espressoCoreVersion",
+            junitktx     : "androidx.test.ext:junit-ktx:$androidXJunitVersion",
             ioMockk      : "io.mockk:mockk:$mockkVersion",
             mockito      : "org.mockito:mockito-core:$mockitoVersion",
             mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
@@ -97,16 +100,19 @@ ext {
             lifecycleViewModel: "androidx.lifecycle:lifecycle-viewmodel:$lifeCycleVersion",
             activityKtx       : "androidx.activity:activity-ktx:$activityKtxVersion",
             recyclerView      : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
-            lifecycleExtensions : "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensions",
             material          : "com.google.android.material:material:$materialVersion",
             koinViewModel     : "org.koin:koin-androidx-viewmodel:$koinVersion",
             picasso           : "com.squareup.picasso:picasso:$picassoVersion",
+
     ]
 
     appTestDependencies = [
             coreTestingAndroidX: "androidx.arch.core:core-testing:$androidxArchVersion",
-            testRunner        : "androidx.test:runner:$testRunnerVersion",
-            coreKtx           : "androidx.test:core-ktx:$coreKtxTestVersion",
+            testRunner         : "androidx.test:runner:$testRunnerVersion",
+            coreKtx            : "androidx.test:core-ktx:$coreKtxTestVersion",
+            fastlane           : "tools.fastlane:screengrab:$fastlaneVersion",
+            espressoCore       : "androidx.test.espresso:espresso-core:$espressoCoreVersion",
+            espressoContrib    : "androidx.test.espresso:espresso-contrib:$espressoCoreVersion",
     ]
 
 }

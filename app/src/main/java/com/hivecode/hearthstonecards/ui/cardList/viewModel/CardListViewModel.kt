@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hivecode.data.model.*
 import com.hivecode.data.repository.CardRepository
-import com.hivecode.data.repository.CardTypeRepository
 
 class CardListViewModel(
     private val repository: CardRepository
@@ -19,7 +18,7 @@ class CardListViewModel(
     val loading: LiveData<Boolean>
         get() = repository.loading
 
-    fun fetchCardByType(cardTypeInfo: CardTypeInfo, selectedType: String){
+    fun fetchCardByCardTypeInfo(cardTypeInfo: CardTypeInfo, selectedType: String){
         when(cardTypeInfo){
             is ClassCardType -> repository.fetchCardsByClass(selectedType)
             is RaceCardType -> repository.fetchCardsByRace(selectedType)

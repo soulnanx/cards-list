@@ -62,7 +62,7 @@ class CardListActivity : BaseActivity() {
         binding.cardRV.adapter = adapter
         binding.activity = this
         binding.selectedType = selectedType
-        viewModel.fetchCardByType(cardTypeInfo, selectedType)
+        viewModel.fetchCardByCardTypeInfo(cardTypeInfo, selectedType)
     }
 
     private fun setObservables() {
@@ -104,7 +104,7 @@ class CardListActivity : BaseActivity() {
     }
 
     private fun onClickCard(){
-//        viewModel.fetchCardsByType(text)
+
     }
 
 }

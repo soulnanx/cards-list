@@ -22,6 +22,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
 
     compileOptions {
@@ -45,6 +46,7 @@ dependencies {
     def appTestDependencies = rootProject.ext.appTestDependencies
 
     implementation project(rootProject.ext.modules.data)
+    implementation project(rootProject.ext.modules.common)
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation mainDependencies.kotlinStdLib
@@ -54,11 +56,11 @@ dependencies {
     implementation mainDependencies.koinCore
     implementation mainDependencies.retrofit
     implementation mainDependencies.retrofitRx
+    implementation mainDependencies.lifecycleExtensions
 
     implementation appDependencies.picasso
     implementation appDependencies.constraintLayout
     implementation appDependencies.material
-    implementation appDependencies.lifecycleExtensions
     implementation appDependencies.koinViewModel
     implementation appDependencies.lifecycleViewModel
     implementation appDependencies.activityKtx
@@ -69,5 +71,11 @@ dependencies {
     testImplementation mainTestDependencies.mockitoKotlin
     testImplementation mainTestDependencies.coreTesting
     testImplementation appTestDependencies.coreTestingAndroidX
+
+    androidTestImplementation appTestDependencies.fastlane
+    androidTestImplementation appTestDependencies.espressoCore
+    androidTestImplementation appTestDependencies.espressoContrib
+    androidTestImplementation appTestDependencies.coreTestingAndroidX
+    androidTestImplementation mainTestDependencies.junitktx
 
 }
