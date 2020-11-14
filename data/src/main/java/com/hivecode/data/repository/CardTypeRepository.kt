@@ -3,11 +3,13 @@ package com.hivecode.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hivecode.data.mapper.CardTypeInfoMapper
+import com.hivecode.data.model.Card
 import com.hivecode.data.model.CardTypeInfo
 import com.hivecode.data.service.CardTypeService
 import io.reactivex.disposables.Disposable
+import org.jetbrains.annotations.TestOnly
 
-class CardTypeRepository(
+open class CardTypeRepository(
     private val cardTypeService: CardTypeService
 ) {
     private val _cardTypeResult = MutableLiveData<List<CardTypeInfo>>()
@@ -22,7 +24,7 @@ class CardTypeRepository(
     val loading: LiveData<Boolean>
         get() = _loading
 
-    fun fetchCardType(): Disposable =
+    open fun fetchCardType(): Disposable =
         cardTypeService
             .fetchCardType()
             .doOnSubscribe { _loading.value = true }
@@ -34,4 +36,14 @@ class CardTypeRepository(
                 { _cardTypeResult.value = it},
                 { _errorResult.value = it}
             )
+
+    @TestOnly
+    fun setError(throwable: Throwable){
+        _errorResult.value = throwable
+    }
+
+    @TestOnly
+    fun setResult(result: List<CardTypeInfo>){
+        _cardTypeResult.value = result
+    }
 }

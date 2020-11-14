@@ -23,7 +23,6 @@ class CardListViewModel(
 
     fun fetchCardByCardTypeInfo(cardTypeInfo: CardTypeInfo, selectedType: String){
         val dispose = when(cardTypeInfo){
-            is ClassCardType -> repository.fetchCardsByClass(selectedType)
             is RaceCardType -> repository.fetchCardsByRace(selectedType)
             is TypeCardType -> repository.fetchCardsByType(selectedType)
             else -> repository.fetchCardsByClass(selectedType)

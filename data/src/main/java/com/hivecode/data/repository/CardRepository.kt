@@ -6,8 +6,9 @@ import com.hivecode.data.mapper.CardMapper
 import com.hivecode.data.model.Card
 import com.hivecode.data.service.CardService
 import io.reactivex.disposables.Disposable
+import org.jetbrains.annotations.TestOnly
 
-class CardRepository(
+open class CardRepository(
     private val cardService: CardService
 ) {
 
@@ -23,7 +24,7 @@ class CardRepository(
     val loading: LiveData<Boolean>
         get() = _loading
 
-    fun fetchCardsByClass(cardClass: String): Disposable =
+    open fun fetchCardsByClass(cardClass: String): Disposable =
         cardService
             .fetchCardsByClass(cardClass)
             .doOnSubscribe { _loading.value = true }
@@ -36,7 +37,7 @@ class CardRepository(
                 { _errorResult.value = it}
             )
 
-    fun fetchCardsByRace(playerClass: String): Disposable =
+    open fun fetchCardsByRace(playerClass: String): Disposable =
         cardService
             .fetchCardsByRace(playerClass)
             .doOnSubscribe { _loading.value = true }
@@ -49,7 +50,7 @@ class CardRepository(
                 { _errorResult.value = it}
             )
 
-    fun fetchCardsByType(type: String): Disposable =
+    open fun fetchCardsByType(type: String): Disposable =
         cardService
             .fetchCardsByType(type)
             .doOnSubscribe { _loading.value = true }
@@ -61,4 +62,14 @@ class CardRepository(
                 { _cardResult.value = it},
                 { _errorResult.value = it}
             )
+
+    @TestOnly
+    fun setError(throwable: Throwable){
+        _errorResult.value = throwable
+    }
+
+    @TestOnly
+    fun setResult(result: List<Card>){
+        _cardResult.value = result
+    }
 }

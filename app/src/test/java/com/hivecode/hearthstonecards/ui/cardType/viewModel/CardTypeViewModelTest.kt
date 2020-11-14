@@ -1,43 +1,68 @@
 package com.hivecode.hearthstonecards.ui.cardType.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
-import com.hivecode.common.tests.TestObserver
+import androidx.lifecycle.Observer
+import com.hivecode.data.model.Card
 import com.hivecode.data.model.CardTypeInfo
 import com.hivecode.data.repository.CardTypeRepository
-import io.mockk.MockKAnnotations
-import io.mockk.every
-import io.mockk.mockk
-import org.junit.Assert.assertEquals
-import org.junit.Before
+import com.hivecode.data.service.CardTypeService
+import com.nhaarman.mockitokotlin2.verify
+import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class CardTypeViewModelTest{
 
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
 
-    private val repository = mockk<CardTypeRepository>(relaxed = true)
-    private val viewModel: CardTypeViewModel by lazy {
-        CardTypeViewModel(repository)
-    }
+    @Mock
+    lateinit var errorResultObserver : Observer<Throwable>
 
-    @Before
-    fun setup() {
-        MockKAnnotations.init(this)
+    @Mock
+    lateinit var resultObserver : Observer<List<CardTypeInfo>>
+
+    private lateinit var viewModel: CardTypeViewModel
+
+    private val expectedSuccess = listOf<CardTypeInfo>(
+        CardTypeInfo("title", emptyList())
+    )
+
+    private val expectedFailure = Throwable("erro interno")
+
+    @Test
+    fun `On init, fetch card type and some error returns `() {
+        viewModel = CardTypeViewModel(MockRepository(expectedFailure))
+        viewModel.errorResult.observeForever(errorResultObserver)
+
+        verify(errorResultObserver).onChanged(expectedFailure)
     }
 
     @Test
-    fun `On init, fetch card type`() {
-        val testObserver = TestObserver<List<CardTypeInfo>>()
-        val expectedResult = mockk<List<CardTypeInfo>>(relaxed = true)
-        viewModel.cardTypeInfoResult.observeForever(testObserver)
+    fun `On init, fetch card type with success result `() {
+        viewModel = CardTypeViewModel(MockRepository(expectedSuccess))
+        viewModel.cardTypeInfoResult.observeForever(resultObserver)
 
-        every { repository.cardTypeInfoResult } returns MutableLiveData<List<CardTypeInfo>>().apply {
-            value = expectedResult
-        }
-
-        assertEquals(viewModel.cardTypeInfoResult.value, expectedResult)
+        verify(resultObserver).onChanged(expectedSuccess)
     }
+}
+
+private class MockRepository(val result: Any) : CardTypeRepository(CardTypeService()){
+
+    override fun fetchCardType() =
+        postResult(result)
+
+    private fun postResult(result: Any): Disposable {
+        when (result) {
+            is Throwable -> setError(result)
+            is List<*> -> setResult(result as List<CardTypeInfo>)
+        }
+        return Single.just(CardTypeInfo(String(), emptyList())).subscribe()
+    }
+
 }
