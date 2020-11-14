@@ -89,10 +89,6 @@ ext {
     ]
 
     dataTestDependencies = [
-            junit        : "junit:junit:$junitVersion",
-            ioMockk      : "io.mockk:mockk:$mockkVersion",
-            mockito      : "org.mockito:mockito-core:$mockitoVersion",
-            mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion",
     ]
 
     appDependencies = [

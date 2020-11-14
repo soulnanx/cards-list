@@ -37,7 +37,7 @@ android {
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
     def mainDependencies = rootProject.ext.mainDependencies
-    def dataTestDependencies = rootProject.ext.dataTestDependencies
+    def mainTestDependencies = rootProject.ext.mainTestDependencies
 
     implementation project(rootProject.ext.modules.common)
     implementation dataDependencies.retrofitRx
@@ -48,9 +48,10 @@ dependencies {
     implementation mainDependencies.koinCore
     implementation dataDependencies.cURL
 
-    testImplementation dataTestDependencies.junit
-    testImplementation dataTestDependencies.ioMockk
-    testImplementation dataTestDependencies.mockito
-    testImplementation dataTestDependencies.mockitoKotlin
+    testImplementation mainTestDependencies.junit
+    testImplementation mainTestDependencies.ioMockk
+    testImplementation mainTestDependencies.mockito
+    testImplementation mainTestDependencies.mockitoKotlin
+    testImplementation mainTestDependencies.coreTesting
 
 }
