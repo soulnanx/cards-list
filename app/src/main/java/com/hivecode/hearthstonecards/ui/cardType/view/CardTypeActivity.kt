@@ -82,4 +82,9 @@ class CardTypeActivity : BaseActivity() {
         startActivity(intent)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.disposable.clear()
+    }
+
 }

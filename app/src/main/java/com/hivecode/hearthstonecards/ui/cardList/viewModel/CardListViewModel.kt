@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hivecode.data.model.*
 import com.hivecode.data.repository.CardRepository
+import io.reactivex.disposables.CompositeDisposable
 
 class CardListViewModel(
     private val repository: CardRepository
 ) : ViewModel() {
+
+    val disposable = CompositeDisposable()
 
     val cardResult: LiveData<List<Card>>
         get() = repository.cardResult
@@ -19,11 +22,14 @@ class CardListViewModel(
         get() = repository.loading
 
     fun fetchCardByCardTypeInfo(cardTypeInfo: CardTypeInfo, selectedType: String){
-        when(cardTypeInfo){
+        val dispose = when(cardTypeInfo){
             is ClassCardType -> repository.fetchCardsByClass(selectedType)
             is RaceCardType -> repository.fetchCardsByRace(selectedType)
             is TypeCardType -> repository.fetchCardsByType(selectedType)
+            else -> repository.fetchCardsByClass(selectedType)
         }
+
+        disposable.add(dispose)
     }
 
 }

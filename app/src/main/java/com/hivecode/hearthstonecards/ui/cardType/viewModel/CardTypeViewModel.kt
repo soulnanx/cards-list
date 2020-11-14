@@ -4,13 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hivecode.data.model.CardTypeInfo
 import com.hivecode.data.repository.CardTypeRepository
+import io.reactivex.disposables.CompositeDisposable
 
 class CardTypeViewModel(
     private val cardTypeRepository: CardTypeRepository
 ) : ViewModel() {
 
+    val disposable = CompositeDisposable()
+
     init {
-        cardTypeRepository.fetchCardType()
+        disposable.add(
+            cardTypeRepository.fetchCardType()
+        )
     }
 
     val cardTypeInfoResult: LiveData<List<CardTypeInfo>>

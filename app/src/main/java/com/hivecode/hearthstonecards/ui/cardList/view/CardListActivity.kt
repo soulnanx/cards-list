@@ -107,4 +107,9 @@ class CardListActivity : BaseActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.disposable.clear()
+    }
+
 }
