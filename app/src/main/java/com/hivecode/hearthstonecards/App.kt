@@ -1,7 +1,9 @@
 package com.hivecode.hearthstonecards
 
 import android.app.Application
+import com.hivecode.hearthstonecards.di.mapperModule
 import com.hivecode.hearthstonecards.di.repositoryModule
+import com.hivecode.hearthstonecards.di.useCaseModule
 import com.hivecode.hearthstonecards.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -23,7 +25,9 @@ class App : Application(){
             modules(
                 listOf(
                     viewModelModule,
-                    repositoryModule
+                    repositoryModule,
+                    mapperModule,
+                    useCaseModule
 
                 )
             )

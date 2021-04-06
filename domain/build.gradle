@@ -1,0 +1,24 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    def dataDependencies = rootProject.ext.dataDependencies
+    def mainDependencies = rootProject.ext.mainDependencies
+
+    implementation dataDependencies.retrofitRx
+    implementation dataDependencies.retrofitGson
+    implementation mainDependencies.retrofit
+    implementation mainDependencies.rxAndroid
+    implementation mainDependencies.koin
+    implementation mainDependencies.koinCore
+    implementation dataDependencies.cURL
+}

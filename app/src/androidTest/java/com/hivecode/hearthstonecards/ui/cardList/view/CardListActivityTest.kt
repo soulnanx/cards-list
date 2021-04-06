@@ -60,6 +60,7 @@ class CardListActivityTest {
 
     @Test
     fun test_type_cards_were_loaded() {
+        Thread.sleep(700)
         val selectedCardTypeInfo = TypeCardType()
         val selectedClassType = "Hero"
 

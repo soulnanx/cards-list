@@ -12,7 +12,7 @@ ext {
     kotlinVersion = '1.3.41'
     constraintLayoutVersion = '1.1.2'
     testInstrumentationRunnerName = "androidx.test.runner.AndroidJUnitRunner"
-    androidToolsBuildGradleVersion = '4.0.1'
+    androidToolsBuildGradleVersion = '4.1.3'
     androidxCoreVersion = '1.3.0'
     androidxAppCompatVersion = '1.1.0'
     constraintLayoutVersion = '1.1.3'
@@ -50,7 +50,9 @@ ext {
     modules = [
             data        : ":data",
             app         : ":app",
-            common      : ":common"
+            common      : ":common",
+            domain      : ":domain",
+
     ]
 
     commonDependencies = [

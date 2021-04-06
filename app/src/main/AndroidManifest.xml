@@ -12,14 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
 
-        <activity android:name="com.hivecode.hearthstonecards.ui.cardType.view.CardTypeActivity">
+        <activity android:name=".ui.menu.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
-        <activity android:name=".ui.cardList.view.CardListActivity"></activity>
+        <activity android:name=".ui.cardList.view.CardListActivity"/>
+        <activity android:name=".ui.githubRepos.GitReposActivity"/>
         
     </application>
 

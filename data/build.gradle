@@ -20,12 +20,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
+            buildConfigField "String", 'GITHUB_ENDPOINT', '"https://api.github.com/"'
+
             buildConfigField "String", 'REST_ENDPOINT', '"https://omgvamp-hearthstone-v1.p.rapidapi.com/"'
             buildConfigField "String", 'REST_HEADER_API_HOST', '"omgvamp-hearthstone-v1.p.rapidapi.com"'
             buildConfigField "String", 'REST_HEADER_API_KEY', '"d557b88312msh910f23ecea87dd5p1a2b9djsne49905757dc2"'
         }
 
         debug {
+            buildConfigField "String", 'GITHUB_ENDPOINT', '"https://api.github.com/"'
+
             buildConfigField "String", 'REST_ENDPOINT', '"https://omgvamp-hearthstone-v1.p.rapidapi.com/"'
             buildConfigField "String", 'REST_HEADER_API_HOST', '"omgvamp-hearthstone-v1.p.rapidapi.com"'
             buildConfigField "String", 'REST_HEADER_API_KEY', '"d557b88312msh910f23ecea87dd5p1a2b9djsne49905757dc2"'
@@ -40,6 +44,8 @@ dependencies {
     def mainTestDependencies = rootProject.ext.mainTestDependencies
 
     implementation project(rootProject.ext.modules.common)
+    implementation project(rootProject.ext.modules.domain)
+
     implementation dataDependencies.retrofitRx
     implementation dataDependencies.retrofitGson
     implementation mainDependencies.retrofit
