@@ -9,10 +9,6 @@ class MenuViewModel: ViewModel() {
     val navigation = MutableLiveData<Navigation>()
 
     fun onSelectedItem() {
-        if (selectedItem.isEmpty()){
-//            navigation.value = ErrorRequest(data = Navigation("Repos"))
-        } else {
-            navigation.value = Navigation("Repos")
-        }
+        navigation.value = Navigation(selectedItem)
     }
 }

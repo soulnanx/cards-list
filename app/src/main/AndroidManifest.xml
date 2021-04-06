@@ -20,6 +20,7 @@
 
         </activity>
         <activity android:name=".ui.cardList.view.CardListActivity"/>
+        <activity android:name=".ui.cardType.view.CardTypeActivity"/>
         <activity android:name=".ui.githubRepos.GitReposActivity"/>
         
     </application>

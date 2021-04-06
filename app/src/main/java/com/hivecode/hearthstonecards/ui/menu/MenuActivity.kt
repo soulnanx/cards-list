@@ -12,6 +12,7 @@ import com.hivecode.hearthstonecards.R
 import com.hivecode.hearthstonecards.base.BaseActivity
 import com.hivecode.hearthstonecards.base.Navigation
 import com.hivecode.hearthstonecards.databinding.MenuActivityBinding
+import com.hivecode.hearthstonecards.ui.cardType.view.CardTypeActivity
 import com.hivecode.hearthstonecards.ui.githubRepos.GitReposActivity
 import org.koin.android.ext.android.inject
 
@@ -58,11 +59,15 @@ class MenuActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun handleEvent(navigation: Navigation) {
-        if (navigation.route == "Repos"){
-            val intent = GitReposActivity.createIntent(context = this)
-            startActivity(intent)
+        val intent = when(navigation.route){
+            "Repos" -> GitReposActivity.createIntent(context = this)
+            "Cards" -> CardTypeActivity.createIntent(context = this)
+            else -> null
         }
 
+        if (intent != null){
+            startActivity(intent)
+        }
     }
 
     private fun setView() {
