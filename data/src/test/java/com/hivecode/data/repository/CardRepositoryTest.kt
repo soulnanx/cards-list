@@ -3,7 +3,6 @@ package com.hivecode.data.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.hivecode.common.tests.TestObserver
-import com.hivecode.data.model.Card_
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk

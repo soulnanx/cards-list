@@ -1,7 +1,6 @@
 package com.hivecode.data.mapper
 
 import com.hivecode.common.mapper.DataMapper
-import com.hivecode.data.model.Card_
 import com.hivecode.data.service.response.CardResponse
 import com.hivecode.domain.model.Card
 

@@ -12,9 +12,6 @@ import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hivecode.domain.model.CardTypeInfo
-import com.hivecode.data.model.ClassCardType_
-import com.hivecode.data.model.RaceCardType_
-import com.hivecode.data.model.TypeCardType_
 import com.hivecode.hearthstonecards.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher

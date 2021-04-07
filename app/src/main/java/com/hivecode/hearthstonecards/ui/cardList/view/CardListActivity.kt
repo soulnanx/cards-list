@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.hivecode.data.model.Card_
 import com.hivecode.domain.model.Card
 import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.hearthstonecards.R

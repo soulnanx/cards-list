@@ -2,10 +2,10 @@ package com.hivecode.data.mapper
 
 import com.hivecode.common.mapper.DataMapper
 import com.hivecode.domain.model.CardTypeInfo
-import com.hivecode.data.model.ClassCardType_
-import com.hivecode.data.model.RaceCardType_
-import com.hivecode.data.model.TypeCardType_
 import com.hivecode.data.service.response.CardTypeResponse
+import com.hivecode.domain.model.ClassCardType
+import com.hivecode.domain.model.RaceCardType
+import com.hivecode.domain.model.TypeCardType
 
 class CardTypeInfoMapper: DataMapper<CardTypeResponse, List<CardTypeInfo>> {
     override fun from(it: CardTypeResponse) =
@@ -16,9 +16,9 @@ class CardTypeInfoMapper: DataMapper<CardTypeResponse, List<CardTypeInfo>> {
     ): List<CardTypeInfo> {
 
         return listOf(
-            ClassCardType_(response.classes ?: emptyList()),
-            RaceCardType_(response.races ?: emptyList()),
-            TypeCardType_(response.types ?: emptyList())
+            ClassCardType(response.classes ?: emptyList()),
+            RaceCardType(response.races ?: emptyList()),
+            TypeCardType(response.types ?: emptyList())
         )
     }
 }

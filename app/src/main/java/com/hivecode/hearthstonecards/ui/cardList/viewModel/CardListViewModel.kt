@@ -2,9 +2,10 @@ package com.hivecode.hearthstonecards.ui.cardList.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hivecode.data.model.*
 import com.hivecode.domain.model.Card
 import com.hivecode.domain.model.CardTypeInfo
+import com.hivecode.domain.model.RaceCardType
+import com.hivecode.domain.model.TypeCardType
 import com.hivecode.domain.usecase.fetchCardsByClass.FetchCardsByClassUseCase
 import com.hivecode.domain.usecase.fetchCardsByRace.FetchCardsByRaceUseCase
 import com.hivecode.domain.usecase.fetchCardsByType.FetchCardsByTypeUseCase
@@ -25,8 +26,8 @@ class CardListViewModel(
 
     fun fetchCardByCardTypeInfo(cardTypeInfo: CardTypeInfo, selectedType: String){
         val useCase = when(cardTypeInfo){
-            is RaceCardType_ -> fetchCardsByRaceUseCase.invoke(selectedType)
-            is TypeCardType_ -> fetchCardsByTypeUseCase.invoke(selectedType)
+            is RaceCardType -> fetchCardsByRaceUseCase.invoke(selectedType)
+            is TypeCardType -> fetchCardsByTypeUseCase.invoke(selectedType)
             else -> fetchCardsByClassUseCase.invoke(selectedType)
         }
 
