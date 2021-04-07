@@ -1,4 +1,4 @@
-package com.hivecode.data.model
+package com.hivecode.domain.model
 
 import java.io.Serializable
 

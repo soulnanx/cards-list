@@ -1,28 +1,21 @@
 package com.hivecode.hearthstonecards.ui.cardList.view
 
 import android.content.Context
-import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.BoundedMatcher
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
-import com.hivecode.data.model.CardTypeInfo
-import com.hivecode.data.model.ClassCardType
-import com.hivecode.data.model.RaceCardType
-import com.hivecode.data.model.TypeCardType
+import com.hivecode.domain.model.CardTypeInfo
+import com.hivecode.data.model.ClassCardType_
+import com.hivecode.data.model.RaceCardType_
+import com.hivecode.data.model.TypeCardType_
 import com.hivecode.hearthstonecards.R
-import com.hivecode.hearthstonecards.ui.cardType.view.CardTypeAdapter
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.junit.Before
@@ -44,7 +37,7 @@ class CardListActivityTest {
 
     @Test
     fun test_class_cards_were_loaded() {
-        val selectedCardTypeInfo = ClassCardType()
+        val selectedCardTypeInfo = ClassCardType_()
         val selectedClassType = "Druid"
 
         val intent = buildIntent(selectedCardTypeInfo, selectedClassType)
@@ -61,7 +54,7 @@ class CardListActivityTest {
     @Test
     fun test_type_cards_were_loaded() {
         Thread.sleep(700)
-        val selectedCardTypeInfo = TypeCardType()
+        val selectedCardTypeInfo = TypeCardType_()
         val selectedClassType = "Hero"
 
         val intent = buildIntent(selectedCardTypeInfo, selectedClassType)
@@ -77,7 +70,7 @@ class CardListActivityTest {
 
     @Test
     fun test_race_cards_were_loaded() {
-        val selectedCardTypeInfo = RaceCardType()
+        val selectedCardTypeInfo = RaceCardType_()
         val selectedClassType = "Demon"
 
         val intent = buildIntent(selectedCardTypeInfo, selectedClassType)

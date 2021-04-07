@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.hivecode.data.model.CardTypeInfo
+import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.hearthstonecards.R
 import com.hivecode.hearthstonecards.base.BaseActivity
 import com.hivecode.hearthstonecards.databinding.CardTypeActivityBinding
 import com.hivecode.hearthstonecards.ui.cardList.view.CardListActivity
 import com.hivecode.hearthstonecards.ui.cardType.viewModel.CardTypeViewModel
-import com.hivecode.hearthstonecards.ui.githubRepos.GitReposActivity
 import org.koin.android.ext.android.inject
 
 class CardTypeActivity : BaseActivity() {
@@ -55,12 +54,12 @@ class CardTypeActivity : BaseActivity() {
             Observer { shouldShowLoading(it) }
         )
 
-        viewModel.cardTypeInfoResult.observe(
+        viewModel.success.observe(
             this,
             Observer { addItemsOnRecyclerView(it) }
         )
 
-        viewModel.errorResult.observe(
+        viewModel.failure.observe(
             this,
             Observer { showError(it) }
         )

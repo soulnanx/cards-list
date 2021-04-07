@@ -3,9 +3,7 @@ package com.hivecode.data.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.hivecode.common.tests.TestObserver
-import com.hivecode.data.model.Card
-import com.hivecode.data.model.CardTypeInfo
-import com.hivecode.data.service.response.CardResponse
+import com.hivecode.data.model.Card_
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk
@@ -20,7 +18,7 @@ class CardRepositoryTest {
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
 
-    private val repository = mockk<CardRepository>(relaxed = true)
+    private val repository = mockk<CardRepository_>(relaxed = true)
 
     @Before
     fun setup() {
@@ -29,12 +27,12 @@ class CardRepositoryTest {
 
     @Test
     fun fetchCardsByClass() {
-        val testObserver = TestObserver<List<Card>>()
-        val expectedResult = mockk<List<Card>>(relaxed = true)
+        val testObserver = TestObserver<List<Card_>>()
+        val expectedResult = mockk<List<Card_>>(relaxed = true)
         val requestedClass = "Druid"
         repository.cardResult.observeForever(testObserver)
 
-        every { repository.cardResult } returns MutableLiveData<List<Card>>().apply {
+        every { repository.cardResult } returns MutableLiveData<List<Card_>>().apply {
             value = expectedResult
         }
 
@@ -45,12 +43,12 @@ class CardRepositoryTest {
 
     @Test
     fun fetchCardsByRace() {
-        val testObserver = TestObserver<List<Card>>()
-        val expectedResult = mockk<List<Card>>(relaxed = true)
+        val testObserver = TestObserver<List<Card_>>()
+        val expectedResult = mockk<List<Card_>>(relaxed = true)
         val requestedRace = "Demon"
         repository.cardResult.observeForever(testObserver)
 
-        every { repository.cardResult } returns MutableLiveData<List<Card>>().apply {
+        every { repository.cardResult } returns MutableLiveData<List<Card_>>().apply {
             value = expectedResult
         }
 
@@ -61,12 +59,12 @@ class CardRepositoryTest {
 
     @Test
     fun fetchCardsByType() {
-        val testObserver = TestObserver<List<Card>>()
-        val expectedResult = mockk<List<Card>>(relaxed = true)
+        val testObserver = TestObserver<List<Card_>>()
+        val expectedResult = mockk<List<Card_>>(relaxed = true)
         val requestedType = "Hero"
         repository.cardResult.observeForever(testObserver)
 
-        every { repository.cardResult } returns MutableLiveData<List<Card>>().apply {
+        every { repository.cardResult } returns MutableLiveData<List<Card_>>().apply {
             value = expectedResult
         }
 

@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hivecode.data.model.CardTypeInfo
+import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.hearthstonecards.databinding.ItemCardTypeCardBinding
 import java.util.*
 

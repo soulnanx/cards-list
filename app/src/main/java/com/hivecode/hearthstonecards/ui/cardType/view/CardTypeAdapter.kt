@@ -3,7 +3,7 @@ package com.hivecode.hearthstonecards.ui.cardType.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hivecode.data.model.CardTypeInfo
+import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.hearthstonecards.databinding.ItemCardTypeBodyBinding
 
 class CardTypeAdapter(

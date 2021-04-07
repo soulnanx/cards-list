@@ -1,29 +1,48 @@
 package com.hivecode.hearthstonecards.ui.cardType.viewModel
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hivecode.data.model.CardTypeInfo
-import com.hivecode.data.repository.CardTypeRepository
+import com.hivecode.domain.model.CardTypeInfo
+import com.hivecode.domain.model.GitRepo
+import com.hivecode.domain.usecase.fetchCardType.FetchCardTypeUseCase
 import io.reactivex.disposables.CompositeDisposable
 
 class CardTypeViewModel(
-    private val cardTypeRepository: CardTypeRepository
+    private val fetchCardTypeUseCase: FetchCardTypeUseCase
 ) : ViewModel() {
 
     val disposable = CompositeDisposable()
 
+    val success = MutableLiveData<List<CardTypeInfo>>()
+    val failure = MutableLiveData<Throwable>()
+    val loading = MutableLiveData<Boolean>()
+
     init {
-        disposable.add(
-            cardTypeRepository.fetchCardType()
-        )
+        performFetchCardTypeUseCase()
     }
 
-    val cardTypeInfoResult: LiveData<List<CardTypeInfo>>
-        get() = cardTypeRepository.cardTypeInfoResult
+    fun performFetchCardTypeUseCase() {
 
-    val errorResult: LiveData<Throwable>
-        get() = cardTypeRepository.errorResult
+        val dispose = fetchCardTypeUseCase.invoke()
+            .doOnSubscribe {
+                loading.value = true
+            }
+            .doAfterTerminate{
+                loading.value = false
+            }
+            .subscribe(
+                {
+                    success.value = it
+                },{
+                    errorHandler(it)
+                }
+            )
 
-    val loading: LiveData<Boolean>
-        get() = cardTypeRepository.loading
+        disposable.add(dispose)
+    }
+
+    private fun errorHandler(error: Throwable) {
+        failure.value = error
+    }
+
 }

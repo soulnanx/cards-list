@@ -1,16 +1,12 @@
 package com.hivecode.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hivecode.common.tests.TestObserver
-import com.hivecode.data.model.CardTypeInfo
-import com.hivecode.data.model.ClassCardType
-import com.hivecode.data.service.response.CardTypeResponse
+import com.hivecode.domain.model.CardTypeInfo
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk
-import io.reactivex.Single
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -22,7 +18,7 @@ class CardTypeRepositoryTest {
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
 
-    private val repository = mockk<CardTypeRepository>(relaxed = true)
+    private val repository = mockk<CardTypeRepository_>(relaxed = true)
 
     @Before
     fun setup() {

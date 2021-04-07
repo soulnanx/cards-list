@@ -3,8 +3,8 @@ package com.hivecode.hearthstonecards.ui.cardList.viewModel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.hivecode.data.model.*
-import com.hivecode.data.repository.CardRepository
 import com.hivecode.data.service.CardService
+import com.hivecode.domain.model.CardTypeInfo
 import com.nhaarman.mockitokotlin2.verify
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
@@ -24,20 +24,20 @@ class CardListViewModelTest {
     lateinit var errorResultObserver : Observer<Throwable>
 
     @Mock
-    lateinit var cardResultObserver : Observer<List<Card>>
+    lateinit var cardResultObserver : Observer<List<Card_>>
 
     private lateinit var viewModel: CardListViewModel
 
-    private val expectedSuccess = listOf<Card>(
-        Card("cardId", "img", "imgGold", "name")
+    private val expectedSuccess = listOf<Card_>(
+        Card_("cardId", "img", "imgGold", "name")
     )
 
     private val expectedFailure = Throwable("erro interno")
 
     @Test
     fun `when try to fetch card by type and some error returns`() {
-        viewModel = CardListViewModel(MockRepository(expectedFailure))
-        val cardType = ClassCardType(emptyList())
+        viewModel = CardListViewModel(MockRepository(expectedFailure),,,)
+        val cardType = ClassCardType_(emptyList())
         val selectedType = "selected type"
 
         viewModel.errorResult.observeForever(errorResultObserver)
@@ -48,8 +48,8 @@ class CardListViewModelTest {
 
     @Test
     fun `when fetch card by class with success result`() {
-        viewModel = CardListViewModel(MockRepository(expectedSuccess))
-        val cardType = ClassCardType(emptyList())
+        viewModel = CardListViewModel(MockRepository(expectedSuccess),,,)
+        val cardType = ClassCardType_(emptyList())
         val selectedType = "selected type"
 
         viewModel.cardResult.observeForever(cardResultObserver)
@@ -60,8 +60,8 @@ class CardListViewModelTest {
 
     @Test
     fun `when fetch card by race with success result`() {
-        viewModel = CardListViewModel(MockRepository(expectedSuccess))
-        val cardType = RaceCardType(emptyList())
+        viewModel = CardListViewModel(MockRepository(expectedSuccess),,,)
+        val cardType = RaceCardType_(emptyList())
         val selectedType = "selected type"
 
         viewModel.cardResult.observeForever(cardResultObserver)
@@ -72,8 +72,8 @@ class CardListViewModelTest {
 
     @Test
     fun `when fetch card by type with success result`() {
-        viewModel = CardListViewModel(MockRepository(expectedSuccess))
-        val cardType = TypeCardType(emptyList())
+        viewModel = CardListViewModel(MockRepository(expectedSuccess),,,)
+        val cardType = TypeCardType_(emptyList())
         val selectedType = "selected type"
 
         viewModel.cardResult.observeForever(cardResultObserver)
@@ -82,7 +82,7 @@ class CardListViewModelTest {
         verify(cardResultObserver).onChanged(expectedSuccess)
     }
 }
-private class MockRepository(val result: Any) : CardRepository(CardService()){
+private class MockRepository(val result: Any) : CardRepository_(CardService()){
 
     override fun fetchCardsByClass(cardClass: String) =
         postResult(result)
@@ -96,9 +96,14 @@ private class MockRepository(val result: Any) : CardRepository(CardService()){
     private fun postResult(result: Any): Disposable {
         when (result) {
             is Throwable -> setError(result)
-            is List<*> -> setResult(result as List<Card>)
+            is List<*> -> setResult(result as List<Card_>)
         }
-        return Single.just(CardTypeInfo(String(), emptyList())).subscribe()
+        return Single.just(
+            CardTypeInfo(
+                String(),
+                emptyList()
+            )
+        ).subscribe()
     }
 
 }

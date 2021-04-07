@@ -1,10 +1,10 @@
 package com.hivecode.data.mapper
 
 import com.hivecode.common.mapper.DataMapper
-import com.hivecode.data.model.CardTypeInfo
-import com.hivecode.data.model.ClassCardType
-import com.hivecode.data.model.RaceCardType
-import com.hivecode.data.model.TypeCardType
+import com.hivecode.domain.model.CardTypeInfo
+import com.hivecode.data.model.ClassCardType_
+import com.hivecode.data.model.RaceCardType_
+import com.hivecode.data.model.TypeCardType_
 import com.hivecode.data.service.response.CardTypeResponse
 
 class CardTypeInfoMapper: DataMapper<CardTypeResponse, List<CardTypeInfo>> {
@@ -16,9 +16,9 @@ class CardTypeInfoMapper: DataMapper<CardTypeResponse, List<CardTypeInfo>> {
     ): List<CardTypeInfo> {
 
         return listOf(
-            ClassCardType(response.classes ?: emptyList()),
-            RaceCardType(response.races ?: emptyList()),
-            TypeCardType(response.types ?: emptyList())
+            ClassCardType_(response.classes ?: emptyList()),
+            RaceCardType_(response.races ?: emptyList()),
+            TypeCardType_(response.types ?: emptyList())
         )
     }
 }

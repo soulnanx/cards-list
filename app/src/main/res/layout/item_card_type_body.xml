@@ -4,7 +4,7 @@
     <data>
         <variable
             name="cardTypeInfo"
-            type="com.hivecode.data.model.CardTypeInfo" />
+            type="com.hivecode.domain.model.CardTypeInfo" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.hivecode.data.model.Card
-import com.hivecode.data.model.CardTypeInfo
+import com.hivecode.data.model.Card_
+import com.hivecode.domain.model.Card
+import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.hearthstonecards.R
 import com.hivecode.hearthstonecards.base.BaseActivity
 import com.hivecode.hearthstonecards.databinding.CardListActivityBinding
@@ -72,13 +73,13 @@ class CardListActivity : BaseActivity() {
             Observer { shouldShowLoading(it) }
         )
 
-        viewModel.cardResult.observe(
+        viewModel.success.observe(
             this,
             Observer {
                 addCardsOnRecyclerView(it) }
         )
 
-        viewModel.errorResult.observe(
+        viewModel.failure.observe(
             this,
             Observer {
                 showError(it) }

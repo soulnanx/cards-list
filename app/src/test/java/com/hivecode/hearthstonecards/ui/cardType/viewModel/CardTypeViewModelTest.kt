@@ -2,9 +2,7 @@ package com.hivecode.hearthstonecards.ui.cardType.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.hivecode.data.model.Card
-import com.hivecode.data.model.CardTypeInfo
-import com.hivecode.data.repository.CardTypeRepository
+import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.data.service.CardTypeService
 import com.nhaarman.mockitokotlin2.verify
 import io.reactivex.Single
@@ -52,7 +50,7 @@ class CardTypeViewModelTest{
     }
 }
 
-private class MockRepository(val result: Any) : CardTypeRepository(CardTypeService()){
+private class MockRepository(val result: Any) : CardTypeRepository_(CardTypeService()){
 
     override fun fetchCardType() =
         postResult(result)
@@ -62,7 +60,12 @@ private class MockRepository(val result: Any) : CardTypeRepository(CardTypeServi
             is Throwable -> setError(result)
             is List<*> -> setResult(result as List<CardTypeInfo>)
         }
-        return Single.just(CardTypeInfo(String(), emptyList())).subscribe()
+        return Single.just(
+            CardTypeInfo(
+                String(),
+                emptyList()
+            )
+        ).subscribe()
     }
 
 }
