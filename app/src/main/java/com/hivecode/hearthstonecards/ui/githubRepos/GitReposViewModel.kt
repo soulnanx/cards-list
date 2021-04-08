@@ -2,10 +2,10 @@ package com.hivecode.hearthstonecards.ui.githubRepos
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.domain.model.GitRepo
 import com.hivecode.domain.usecase.github.FetchGithubUseCase
 import com.hivecode.hearthstonecards.ui.components.ValidationModel
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 
 class GitReposViewModel(
@@ -45,21 +45,23 @@ class GitReposViewModel(
         val username = this.username.value as String
 
         val dispose = fetchGithubUseCase.invoke(username)
-            .doOnSubscribe {
-                loading.value = true
-            }
-            .doAfterTerminate{
-                loading.value = false
-            }
-            .subscribe(
-                {
-                    success.value = it
-                },{
-                    errorHandler(it)
-                }
-            )
+            .doOnSubscribe { loading.value = true }
+            .doAfterTerminate{ loading.value = false }
+            .subscribe(onSuccess(), onFailure())
 
         disposable.add(dispose)
+    }
+
+    private fun onFailure(): (Throwable) -> Unit {
+        return {
+            errorHandler(it)
+        }
+    }
+
+    private fun onSuccess(): (List<GitRepo>) -> Unit {
+        return {
+            success.value = it
+        }
     }
 
     private fun errorHandler(error: Throwable) {

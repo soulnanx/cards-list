@@ -12,5 +12,9 @@ class CardTypeService {
 
     private val api = ApiConnection().create(BuildConfig.REST_ENDPOINT, CardTypeRest::class.java)
 
-    internal fun fetchCardType(): Single<CardTypeResponse> = api.fetchCardType()
+    internal fun fetchCardType(): Single<CardTypeResponse> =
+        api
+            .fetchCardType()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 }

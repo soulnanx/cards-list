@@ -50,12 +50,10 @@ val mapperModule = module {
 
 // TODO mover para o modulo correto
 val useCaseModule = module {
-    val io = Schedulers.io()
-    val computation = Schedulers.computation()
 
-    factory<GithubRepository> { GithubRepositoryImpl(get(), get(), io, computation) }
-    factory<CardRepository> { CardRepositoryImpl(get(), get(), io, computation) }
-    factory<CardTypeRepository> { CardTypeRepositoryImpl(get(), get(), io, computation) }
+    factory<GithubRepository> { GithubRepositoryImpl(get(), get()) }
+    factory<CardRepository> { CardRepositoryImpl(get(), get()) }
+    factory<CardTypeRepository> { CardTypeRepositoryImpl(get(), get()) }
 
     factory<FetchGithubUseCase> { FetchGithubUseCaseImpl(get()) }
     factory<FetchCardTypeUseCase> { FetchCardTypeUseCaseImpl(get()) }

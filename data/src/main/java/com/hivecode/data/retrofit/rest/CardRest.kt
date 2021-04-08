@@ -1,7 +1,6 @@
 package com.hivecode.data.retrofit.rest
 
 import com.hivecode.data.service.response.CardResponse
-import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -34,9 +34,7 @@ class CardListViewModel(
         val dispose = useCase
             .doOnSubscribe(showLoading())
             .doAfterTerminate(hideLoading())
-            .subscribe(
-                onSuccess(), onFailure()
-            )
+            .subscribe(onSuccess(), onFailure())
 
         disposable.add(dispose)
     }

@@ -56,7 +56,9 @@ class CardTypeActivity : BaseActivity() {
 
         viewModel.success.observe(
             this,
-            Observer { addItemsOnRecyclerView(it) }
+            Observer {
+                addItemsOnRecyclerView(it)
+            }
         )
 
         viewModel.failure.observe(

@@ -13,9 +13,21 @@ class CardService {
 
     private val api = ApiConnection().create(BuildConfig.REST_ENDPOINT, CardRest::class.java)
 
-    internal fun fetchCardsByClass(playerClass: String) = api.fetchCardsByPlayerClass(playerClass)
+    internal fun fetchCardsByClass(playerClass: String) =
+        api
+            .fetchCardsByPlayerClass(playerClass)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
-    internal fun fetchCardsByRace(race: String) = api.fetchCardsByRace(race)
+    internal fun fetchCardsByRace(race: String) =
+        api
+            .fetchCardsByRace(race)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
-    internal fun fetchCardsByType(type: String) = api.fetchCardsByType(type)
+    internal fun fetchCardsByType(type: String) =
+        api
+            .fetchCardsByType(type)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 }

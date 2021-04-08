@@ -74,14 +74,12 @@ class CardListActivity : BaseActivity() {
 
         viewModel.success.observe(
             this,
-            Observer {
-                addCardsOnRecyclerView(it) }
+            Observer { addCardsOnRecyclerView(it) }
         )
 
         viewModel.failure.observe(
             this,
-            Observer {
-                showError(it) }
+            Observer { showError(it) }
         )
 
     }
@@ -96,11 +94,11 @@ class CardListActivity : BaseActivity() {
     }
 
     private fun showError(throwable: Throwable){
-        Toast.makeText(
-            this,
-            throwable.message ?: "erro desconhecido",
-            Toast.LENGTH_SHORT)
-        .show()
+//        Toast.makeText(
+//            this@CardListActivity,
+//            throwable.message ?: "erro desconhecido",
+//            Toast.LENGTH_SHORT)
+//        .show()
     }
 
     private fun onClickCard(){
