@@ -8,14 +8,9 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CardTypeService() {
+class CardTypeService {
 
     private val api = ApiConnection().create(BuildConfig.REST_ENDPOINT, CardTypeRest::class.java)
 
-    internal fun fetchCardType(): Single<CardTypeResponse> {
-        return api
-            .fetchCardType()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
+    internal fun fetchCardType(): Single<CardTypeResponse> = api.fetchCardType()
 }

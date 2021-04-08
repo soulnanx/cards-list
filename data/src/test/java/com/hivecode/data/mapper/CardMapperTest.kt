@@ -24,7 +24,7 @@ class CardMapperTest{
             every { this@mockk.name } returns name
         }
 
-        val card = mapper.from(response)
+        val card = mapper.from(listOf(response)).first()
 
         assertEquals(response.cardId, card.cardId)
         assertEquals(response.img, card.img)

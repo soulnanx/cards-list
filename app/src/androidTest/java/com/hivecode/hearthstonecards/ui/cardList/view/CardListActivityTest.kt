@@ -12,6 +12,9 @@ import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hivecode.domain.model.CardTypeInfo
+import com.hivecode.domain.model.ClassCardType
+import com.hivecode.domain.model.RaceCardType
+import com.hivecode.domain.model.TypeCardType
 import com.hivecode.hearthstonecards.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -34,14 +37,14 @@ class CardListActivityTest {
 
     @Test
     fun test_class_cards_were_loaded() {
-        val selectedCardTypeInfo = ClassCardType_()
+        val selectedCardTypeInfo = ClassCardType()
         val selectedClassType = "Druid"
 
         val intent = buildIntent(selectedCardTypeInfo, selectedClassType)
         ActivityScenario.launch<CardListActivity>(intent)
 
         Thread.sleep(2000)
-        onView(withId(R.id.card_list_activity))
+        onView(withId(R.id.Cardlist_activity))
             .check(matches(isDisplayed()))
 
         onView(withId(R.id.cardRV))
@@ -51,14 +54,14 @@ class CardListActivityTest {
     @Test
     fun test_type_cards_were_loaded() {
         Thread.sleep(700)
-        val selectedCardTypeInfo = TypeCardType_()
+        val selectedCardTypeInfo = TypeCardType()
         val selectedClassType = "Hero"
 
         val intent = buildIntent(selectedCardTypeInfo, selectedClassType)
         ActivityScenario.launch<CardListActivity>(intent)
 
         Thread.sleep(2000)
-        onView(withId(R.id.card_list_activity))
+        onView(withId(R.id.Cardlist_activity))
             .check(matches(isDisplayed()))
 
         onView(withId(R.id.cardRV))
@@ -67,14 +70,14 @@ class CardListActivityTest {
 
     @Test
     fun test_race_cards_were_loaded() {
-        val selectedCardTypeInfo = RaceCardType_()
+        val selectedCardTypeInfo = RaceCardType()
         val selectedClassType = "Demon"
 
         val intent = buildIntent(selectedCardTypeInfo, selectedClassType)
         ActivityScenario.launch<CardListActivity>(intent)
 
         Thread.sleep(2000)
-        onView(withId(R.id.card_list_activity))
+        onView(withId(R.id.Cardlist_activity))
             .check(matches(isDisplayed()))
 
         onView(withId(R.id.cardRV))

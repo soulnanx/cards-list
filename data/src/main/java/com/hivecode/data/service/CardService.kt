@@ -9,28 +9,13 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CardService() {
+class CardService {
 
     private val api = ApiConnection().create(BuildConfig.REST_ENDPOINT, CardRest::class.java)
 
-    internal fun fetchCardsByClass(playerClass: String): Single<List<CardResponse>> {
-        return api
-            .fetchCardsByPlayerClass(playerClass)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
+    internal fun fetchCardsByClass(playerClass: String) = api.fetchCardsByPlayerClass(playerClass)
 
-    internal fun fetchCardsByRace(race: String): Single<List<CardResponse>> {
-        return api
-            .fetchCardsByRace(race)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
+    internal fun fetchCardsByRace(race: String) = api.fetchCardsByRace(race)
 
-    internal fun fetchCardsByType(type: String): Single<List<CardResponse>> {
-        return api
-            .fetchCardsByType(type)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
+    internal fun fetchCardsByType(type: String) = api.fetchCardsByType(type)
 }

@@ -29,7 +29,7 @@ class CardTypeActivityTest {
     fun test_isActivityInView() {
         Thread.sleep(700)
         Screengrab.screenshot("before_button_click");
-        onView(withId(R.id.card_type_activity)).check(matches(isDisplayed()))
+        onView(withId(R.id.Cardtype_activity)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -39,14 +39,14 @@ class CardTypeActivityTest {
     }
 
     @Test
-    fun test_navigate_to_card_list() {
+    fun test_navigate_to_Cardlist() {
         Thread.sleep(2000)
 
         onView(withId(R.id.cardTypeRV))
             .perform(RecyclerViewActions
                 .actionOnItemAtPosition<CardTypeAdapter.ViewHolder>(0, click()))
         Thread.sleep(2000)
-        onView(withId(R.id.card_list_activity)).check(matches(isDisplayed()))
+        onView(withId(R.id.Cardlist_activity)).check(matches(isDisplayed()))
     }
 
 }

@@ -24,6 +24,7 @@ import com.hivecode.hearthstonecards.ui.cardList.viewModel.CardListViewModel
 import com.hivecode.hearthstonecards.ui.cardType.viewModel.CardTypeViewModel
 import com.hivecode.hearthstonecards.ui.menu.MenuViewModel
 import com.hivecode.hearthstonecards.ui.githubRepos.GitReposViewModel
+import io.reactivex.schedulers.Schedulers
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -49,9 +50,12 @@ val mapperModule = module {
 
 // TODO mover para o modulo correto
 val useCaseModule = module {
-    factory<GithubRepository> { GithubRepositoryImpl(get(), get()) }
-    factory<CardRepository> { CardRepositoryImpl(get(), get()) }
-    factory<CardTypeRepository> { CardTypeRepositoryImpl(get(), get()) }
+    val io = Schedulers.io()
+    val computation = Schedulers.computation()
+
+    factory<GithubRepository> { GithubRepositoryImpl(get(), get(), io, computation) }
+    factory<CardRepository> { CardRepositoryImpl(get(), get(), io, computation) }
+    factory<CardTypeRepository> { CardTypeRepositoryImpl(get(), get(), io, computation) }
 
     factory<FetchGithubUseCase> { FetchGithubUseCaseImpl(get()) }
     factory<FetchCardTypeUseCase> { FetchCardTypeUseCaseImpl(get()) }

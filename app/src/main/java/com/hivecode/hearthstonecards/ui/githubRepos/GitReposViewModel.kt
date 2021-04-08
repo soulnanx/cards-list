@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.hivecode.domain.model.GitRepo
 import com.hivecode.domain.usecase.github.FetchGithubUseCase
 import com.hivecode.hearthstonecards.ui.components.ValidationModel
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 
 class GitReposViewModel(
@@ -14,7 +15,7 @@ class GitReposViewModel(
     val disposable = CompositeDisposable()
 
     val success = MutableLiveData<List<GitRepo>>()
-    val failure = MutableLiveData<String>()
+    val failure = MutableLiveData<Throwable>()
     val loading = MutableLiveData<Boolean>()
 
     var username = ValidationModel("", null)
@@ -23,7 +24,7 @@ class GitReposViewModel(
 
     fun validateAndFetchGitRepos(){
         if (isValidForm()){
-            fetchGithubRepo()
+            performFetchGithubRepo()
         }
     }
 
@@ -40,7 +41,7 @@ class GitReposViewModel(
         }
     }
 
-    private fun fetchGithubRepo() {
+    fun performFetchGithubRepo() {
         val username = this.username.value as String
 
         val dispose = fetchGithubUseCase.invoke(username)
@@ -62,7 +63,7 @@ class GitReposViewModel(
     }
 
     private fun errorHandler(error: Throwable) {
-        failure.value = error.toString()
+        failure.value = error
     }
 
 }

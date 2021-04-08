@@ -2,17 +2,20 @@ package com.hivecode.hearthstonecards.ui.cardList.viewModel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.hivecode.data.model.*
-import com.hivecode.data.service.CardService
-import com.hivecode.domain.model.CardTypeInfo
-import com.nhaarman.mockitokotlin2.verify
+import com.hivecode.domain.model.*
+import com.hivecode.domain.usecase.fetchCardsByClass.FetchCardsByClassUseCase
+import com.hivecode.domain.usecase.fetchCardsByRace.FetchCardsByRaceUseCase
+import com.hivecode.domain.usecase.fetchCardsByType.FetchCardsByTypeUseCase
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import io.reactivex.Single
-import io.reactivex.disposables.Disposable
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+
 
 @RunWith(MockitoJUnitRunner::class)
 class CardListViewModelTest {
@@ -20,90 +23,94 @@ class CardListViewModelTest {
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
 
-    @Mock
-    lateinit var errorResultObserver : Observer<Throwable>
+    private val fetchCardsByClassUseCase = mockk<FetchCardsByClassUseCase>()
+    private val fetchCardsByRaceUseCase = mockk<FetchCardsByRaceUseCase>()
+    private val fetchCardsByTypeUseCase = mockk<FetchCardsByTypeUseCase>()
 
-    @Mock
-    lateinit var cardResultObserver : Observer<List<Card_>>
+    private val success = mockk<Observer<List<Card>>>(relaxed = true)
+    private val failure = mockk<Observer<Throwable>>(relaxed = true)
+
+    private val mockedError = Throwable("error")
+    private val mockedCard = Card("any", "any", "any", "any")
+    private val mockedResult = listOf(mockedCard)
 
     private lateinit var viewModel: CardListViewModel
 
-    private val expectedSuccess = listOf<Card_>(
-        Card_("cardId", "img", "imgGold", "name")
-    )
+    private fun instantiateViewModel(): CardListViewModel {
+        val viewModel = CardListViewModel(
+            fetchCardsByClassUseCase,
+            fetchCardsByRaceUseCase,
+            fetchCardsByTypeUseCase
+        )
+        viewModel.success.observeForever(success)
+        viewModel.failure.observeForever(failure)
+        return viewModel
+    }
 
-    private val expectedFailure = Throwable("erro interno")
+    @Before
+    fun setUp() {
+        this.viewModel = instantiateViewModel()
+    }
+
 
     @Test
     fun `when try to fetch card by type and some error returns`() {
-        viewModel = CardListViewModel(MockRepository(expectedFailure),,,)
-        val cardType = ClassCardType_(emptyList())
-        val selectedType = "selected type"
+        every { fetchCardsByTypeUseCase.invoke("any") } returns Single.error(mockedError)
 
-        viewModel.errorResult.observeForever(errorResultObserver)
-        viewModel.fetchCardByCardTypeInfo(cardType, selectedType)
+        viewModel.fetchCardByCardTypeInfo(TypeCardType(), "any")
 
-        verify(errorResultObserver).onChanged(expectedFailure)
+        verify { failure.onChanged(mockedError) }
     }
 
     @Test
-    fun `when fetch card by class with success result`() {
-        viewModel = CardListViewModel(MockRepository(expectedSuccess),,,)
-        val cardType = ClassCardType_(emptyList())
-        val selectedType = "selected type"
+    fun `when fetch card by type and its results success`() {
+        val result: Single<List<Card>> = Single.just(mockedResult)
+        every { fetchCardsByTypeUseCase.invoke("any") } returns result
 
-        viewModel.cardResult.observeForever(cardResultObserver)
-        viewModel.fetchCardByCardTypeInfo(cardType, selectedType)
+        viewModel.fetchCardByCardTypeInfo(TypeCardType(), "any")
 
-        verify(cardResultObserver).onChanged(expectedSuccess)
+        verify { fetchCardsByTypeUseCase.invoke("any") }
+        verify { success.onChanged(mockedResult) }
     }
 
     @Test
-    fun `when fetch card by race with success result`() {
-        viewModel = CardListViewModel(MockRepository(expectedSuccess),,,)
-        val cardType = RaceCardType_(emptyList())
-        val selectedType = "selected type"
+    fun `when try to fetch card by class and some error returns`() {
+        every { fetchCardsByClassUseCase.invoke("any") } returns Single.error(mockedError)
 
-        viewModel.cardResult.observeForever(cardResultObserver)
-        viewModel.fetchCardByCardTypeInfo(cardType, selectedType)
+        viewModel.fetchCardByCardTypeInfo(ClassCardType(), "any")
 
-        verify(cardResultObserver).onChanged(expectedSuccess)
+        verify { failure.onChanged(mockedError) }
     }
 
     @Test
-    fun `when fetch card by type with success result`() {
-        viewModel = CardListViewModel(MockRepository(expectedSuccess),,,)
-        val cardType = TypeCardType_(emptyList())
-        val selectedType = "selected type"
+    fun `when fetch card by class and its results success`() {
+        val result: Single<List<Card>> = Single.just(mockedResult)
+        every { fetchCardsByClassUseCase.invoke("any") } returns result
 
-        viewModel.cardResult.observeForever(cardResultObserver)
-        viewModel.fetchCardByCardTypeInfo(cardType, selectedType)
+        viewModel.fetchCardByCardTypeInfo(ClassCardType(), "any")
 
-        verify(cardResultObserver).onChanged(expectedSuccess)
+        verify { fetchCardsByClassUseCase.invoke("any") }
+        verify { success.onChanged(mockedResult) }
     }
-}
-private class MockRepository(val result: Any) : CardRepository_(CardService()){
 
-    override fun fetchCardsByClass(cardClass: String) =
-        postResult(result)
+    @Test
+    fun `when try to fetch card by race and some error returns`() {
+        every { fetchCardsByRaceUseCase.invoke("any") } returns Single.error(mockedError)
 
-    override fun fetchCardsByType(type: String) =
-        postResult(result)
+        viewModel.fetchCardByCardTypeInfo(RaceCardType(), "any")
 
-    override fun fetchCardsByRace(race: String) =
-        postResult(result)
+        verify { failure.onChanged(mockedError) }
+    }
 
-    private fun postResult(result: Any): Disposable {
-        when (result) {
-            is Throwable -> setError(result)
-            is List<*> -> setResult(result as List<Card_>)
-        }
-        return Single.just(
-            CardTypeInfo(
-                String(),
-                emptyList()
-            )
-        ).subscribe()
+    @Test
+    fun `when fetch card by race and its results success`() {
+        val result: Single<List<Card>> = Single.just(mockedResult)
+        every { fetchCardsByRaceUseCase.invoke("any") } returns result
+
+        viewModel.fetchCardByCardTypeInfo(RaceCardType(), "any")
+
+        verify { fetchCardsByRaceUseCase.invoke("any") }
+        verify { success.onChanged(mockedResult) }
     }
 
 }

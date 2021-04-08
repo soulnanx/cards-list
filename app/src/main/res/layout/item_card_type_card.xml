@@ -8,11 +8,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardTypeCardView"
-        android:layout_width="@dimen/card_type_card_view_width"
-        android:layout_height="@dimen/card_type_card_view_height"
+        android:layout_width="@dimen/Cardtype_Cardview_width"
+        android:layout_height="@dimen/Cardtype_Cardview_height"
         android:layout_margin="@dimen/margin_2x"
-        app:cardCornerRadius="@dimen/card_type_corner"
-        app:cardElevation="@dimen/card_type_elevation"
+        app:cardCornerRadius="@dimen/Cardtype_corner"
+        app:cardElevation="@dimen/Cardtype_elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
