@@ -3,7 +3,7 @@ package com.hivecode.hearthstonecards.ui.cardList.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.hivecode.domain.model.Card
@@ -13,6 +13,7 @@ import com.hivecode.hearthstonecards.base.BaseActivity
 import com.hivecode.hearthstonecards.databinding.CardListActivityBinding
 import com.hivecode.hearthstonecards.ui.cardList.viewModel.CardListViewModel
 import org.koin.android.ext.android.inject
+import retrofit2.HttpException
 
 
 class CardListActivity : BaseActivity() {
@@ -90,15 +91,29 @@ class CardListActivity : BaseActivity() {
     }
 
     private fun addCardsOnRecyclerView(cardList: List<Card>){
+        binding.cardRV.visibility = View.VISIBLE
         adapter.setList(cardList)
     }
 
     private fun showError(throwable: Throwable){
-//        Toast.makeText(
-//            this@CardListActivity,
-//            throwable.message ?: "erro desconhecido",
-//            Toast.LENGTH_SHORT)
-//        .show()
+        if (throwable is HttpException) {
+            when (throwable.code()){
+                404 -> showNoCard()
+                else -> showDefaultError()
+            }
+        } else {
+            showDefaultError()
+        }
+    }
+
+    private fun showDefaultError() {
+        binding.messageContainer.visibility = View.VISIBLE
+        binding.message.text = getString(R.string.default_internal_error)
+    }
+
+    private fun showNoCard() {
+        binding.messageContainer.visibility = View.VISIBLE
+        binding.message.text = getString(R.string.empty_cards_error)
     }
 
     private fun onClickCard(){

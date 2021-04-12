@@ -3,6 +3,8 @@
     <string name="loading_text">Aguarde...</string>
     <string name="menu_activity_title">Funcionalidades</string>
     <string name="menu_activity_btn_label">Avançar</string>
+    <string name="default_internal_error">Erro interno</string>
+    <string name="empty_cards_error">Sem Cards</string>
 
 
     <string-array name="features_list">
