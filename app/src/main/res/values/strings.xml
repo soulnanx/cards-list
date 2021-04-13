@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hearthstone</string>
+    <string name="app_name">Clean-MVVM</string>
     <string name="loading_text">Aguarde...</string>
     <string name="menu_activity_title">Funcionalidades</string>
     <string name="menu_activity_btn_label">Avançar</string>

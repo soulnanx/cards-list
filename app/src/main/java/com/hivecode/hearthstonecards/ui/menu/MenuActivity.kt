@@ -13,7 +13,7 @@ import com.hivecode.hearthstonecards.base.BaseActivity
 import com.hivecode.hearthstonecards.base.Navigation
 import com.hivecode.hearthstonecards.databinding.MenuActivityBinding
 import com.hivecode.hearthstonecards.ui.cardType.view.CardTypeActivity
-import com.hivecode.hearthstonecards.ui.githubRepos.GitReposActivity
+import com.hivecode.hearthstonecards.ui.githubRepos.view.GitReposActivity
 import org.koin.android.ext.android.inject
 
 class MenuActivity : BaseActivity(), AdapterView.OnItemSelectedListener {

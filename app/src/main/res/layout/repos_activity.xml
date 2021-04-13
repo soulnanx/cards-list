@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.hivecode.hearthstonecards.ui.githubRepos.GitReposViewModel" />
+            type="com.hivecode.hearthstonecards.ui.githubRepos.viewModel.GitReposViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

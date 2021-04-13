@@ -23,8 +23,7 @@ import com.hivecode.domain.usecase.github.FetchGithubUseCaseImpl
 import com.hivecode.hearthstonecards.ui.cardList.viewModel.CardListViewModel
 import com.hivecode.hearthstonecards.ui.cardType.viewModel.CardTypeViewModel
 import com.hivecode.hearthstonecards.ui.menu.MenuViewModel
-import com.hivecode.hearthstonecards.ui.githubRepos.GitReposViewModel
-import io.reactivex.schedulers.Schedulers
+import com.hivecode.hearthstonecards.ui.githubRepos.viewModel.GitReposViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

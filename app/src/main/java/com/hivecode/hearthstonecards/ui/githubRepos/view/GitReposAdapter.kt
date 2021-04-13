@@ -1,4 +1,4 @@
-package com.hivecode.hearthstonecards.ui.githubRepos
+package com.hivecode.hearthstonecards.ui.githubRepos.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

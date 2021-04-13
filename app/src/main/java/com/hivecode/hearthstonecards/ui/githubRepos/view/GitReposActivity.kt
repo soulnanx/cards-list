@@ -1,4 +1,4 @@
-package com.hivecode.hearthstonecards.ui.githubRepos
+package com.hivecode.hearthstonecards.ui.githubRepos.view
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.hivecode.hearthstonecards.R
 import com.hivecode.hearthstonecards.base.BaseActivity
 import com.hivecode.hearthstonecards.databinding.ReposActivityBinding
+import com.hivecode.hearthstonecards.ui.githubRepos.viewModel.GitReposViewModel
 import org.koin.android.ext.android.inject
 
 class GitReposActivity: BaseActivity() {

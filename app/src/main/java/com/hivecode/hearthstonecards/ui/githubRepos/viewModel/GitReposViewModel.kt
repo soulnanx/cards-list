@@ -1,8 +1,7 @@
-package com.hivecode.hearthstonecards.ui.githubRepos
+package com.hivecode.hearthstonecards.ui.githubRepos.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hivecode.domain.model.CardTypeInfo
 import com.hivecode.domain.model.GitRepo
 import com.hivecode.domain.usecase.github.FetchGithubUseCase
 import com.hivecode.hearthstonecards.ui.components.ValidationModel

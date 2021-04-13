@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.hivecode.domain.model.GitRepo
 import com.hivecode.domain.usecase.github.FetchGithubUseCase
 import com.hivecode.hearthstonecards.ui.components.ValidationModel
+import com.hivecode.hearthstonecards.ui.githubRepos.viewModel.GitReposViewModel
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
